@@ -60,24 +60,21 @@ void muestra_rotor(Rotor rot)
 void ConfigurarEnigma(ME *maquina)
 {
     //INTRODUCIR ROTORES
-    char rotores[4];
+    char *rotores = malloc(sizeof(char)*4);
     int pinicial[3];
     int verdad=0;
     int n=0;
-    rotores[3]='\0';
+    //rotores[3]='\0';
 
-    printf("Configurar Enigma: Introduce tres rotores validos (A,B,C,D,E) en forma de cadena (por ejemplo EDC)\n");
-    fflush(stdout);
 
     while (verdad == 0) //Mientras no se introduzca una entrada valida
     {
-        while(n<3)
-        {
-            scanf("%c", &rotores[n]);
-            fflush(stdout);
-            n++;
-        }
-        n=0;
+        printf("Introduce tres rotores validos(A,B,C,D,E) en forma de cadena (por ejemplo EDC)\n");
+        fflush(stdout);
+
+        
+        scanf("%s", rotores);
+        fflush(stdin);
 
         if (rotores[0] != rotores[1] && rotores[1] != rotores[2] && rotores[0] != rotores[2] && rotores[3] == '\0') //No se puede seleccionar el mismo rotor
         {
@@ -95,11 +92,7 @@ void ConfigurarEnigma(ME *maquina)
             }
         }
 
-        if (verdad == 0)
-        {
-            printf("Introduce tres rotores validos(A,B,C,D,E) en forma de cadena (por ejemplo EDC)\n");
-            fflush(stdin);
-        }
+        
     }
 
 
@@ -244,10 +237,10 @@ void ObtenerMensaje(char *cifrado)
 {
     //MENSAJES: A CIFRAR
     int verdad = 0;
-    char msg[100];
+    char* msg = malloc(sizeof(char)*100);
     printf("Introduzca la cadena a cifrar (en mayusculas)\n");
     fflush(stdout);
-    gets(msg);
+    scanf("%s", msg);
 
     int cont = 0;
     while (msg[cont] != '\0')
@@ -255,7 +248,8 @@ void ObtenerMensaje(char *cifrado)
         cont++;
     }
 
-    char mensaje[cont+1];
+    char * mensaje = malloc(sizeof(char)*(cont+1));
+
     for (int i = 0; i <= cont; i++)
     {
         mensaje[i] = msg[i];
@@ -283,11 +277,14 @@ void ObtenerMensaje(char *cifrado)
         {
             printf("Introduce una cadena correcta\n");
             fflush(stdout);
-            gets(mensaje);
+            scanf("%s", mensaje);
         }
     }
 
     strcpy(cifrado, mensaje);
+
+    free(mensaje);
+    free(msg);
 
 }
 

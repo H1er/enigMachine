@@ -10,7 +10,7 @@ int main(void)
 	int logout = 0;
 	int configurada = 0;
 	int opcion=-1;
-	char cadena[100];
+	char *cadena = malloc(sizeof(char)*100);
 
 	while(!logout)
 	{
@@ -41,8 +41,9 @@ int main(void)
 				{
 					while(ok==1)
 					{
+						fflush(stdout);
 						printf("Introduzca la cadena a cifrar(introduzca solo letras en mayusculas): ");
-						gets(cadena);
+						scanf("%s",cadena);
 
 						while(cadena[cont] != '\0' && ok !=0)
 						{
@@ -77,7 +78,7 @@ int main(void)
 					while(ok==1)
 					{
 						printf("Introduzca la cadena a descifrar (introduzca solo letras en mayusculas): ");
-						gets(cadena);
+						scanf("%s",cadena);
 
 						while(cadena[cont] != '\0' && ok !=0)
 						{
@@ -121,7 +122,7 @@ int main(void)
 
 			case 5:
 			{
-				printf("Hasta luego!");
+				printf("\nHasta luego!\n");
 				logout=1;
 				break;
 			};
