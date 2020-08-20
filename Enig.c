@@ -135,7 +135,7 @@ void ConfigurarEnigma(ME *maquina)
     while (verdad == 0)
     {
         fflush(stdin);
-        printf("Introduce la posicion inicial del rotor %c \n", rotores[c]);
+        printf("Introduce la posicion inicial del rotor %c (numero entre 1 y 26)\n", rotores[c]);
         fflush(stdout);
 
         scanf("%d", &pinicial[c]);
